@@ -2,7 +2,7 @@ import motorbikePng from '../motorbike.png';
 
 export function bike() {
     this.score = 0;
-    this.width = 50;
+    this.width = 77;
     this.height = 200;
     this.speedX = 0;
     this.speedY = 0;
