@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lerix/biker.js#readme",
   "devDependencies": {
+    "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
