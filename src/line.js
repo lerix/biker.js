@@ -4,7 +4,7 @@ export function line() {
 
     this.update = function (myGameArea) {
         let ctx = myGameArea.context;
-        ctx.fillStyle = 'grey';
+        ctx.fillStyle = 'red';
         let y = -50;
         let width = 50;
         var space = 30;

@@ -5,7 +5,7 @@ export function bike() {
     this.width = 77;
     this.height = 200;
     this.speedX = 0;
-    this.speedY = 0;
+    this.speedY = -1;
     this.x = 200;
     this.y = 600;
     this.update = function (myGameArea) {
@@ -14,7 +14,7 @@ export function bike() {
         ctx.fillStyle = "black";
         var img = new Image();
         img.src = motorbikePng;
-        ctx.fillRect(this.x + 50, this.y, this.width, this.height);
+        //ctx.fillRect(this.x + 50, this.y, this.width, this.height);
         ctx.drawImage(img, this.x, this.y);
     }
     this.newPos = function (myGameArea) {
