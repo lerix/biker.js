@@ -7,6 +7,7 @@ export function bike() {
     this.speedX = 0;
     this.speedY = -1;
     this.x = 200;
+
     this.y = 600;
     this.update = function (myGameArea) {
         let ctx = myGameArea.context;
