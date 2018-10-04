@@ -2,12 +2,40 @@ import motorbikePng from '../motorbike.png';
 
 export function bike() {
     this.score = 0;
-    this.width = 77;
-    this.height = 125;
+    this.width = 60;
+    this.height = 150;
     this.speedX = 0;
     this.speedY = -1;
     this.x = 200;
     this.y = 600;
+
+    this.up = function () {
+        if (this.y == 0)
+            return;
+
+        this.y--;
+        this.y--;
+        this.y--;
+    }
+    this.down = function () {
+        if (this.y > 670)
+            return;
+
+        this.y++;
+    }
+
+    this.left = function () {
+        if (this.x == 0)
+            return;
+        this.x--;
+    }
+
+    this.right = function () {
+        if (this.x > 320)
+            return;
+        this.x++;
+    }
+
 
     this.update = function (myGameArea) {
         let ctx = myGameArea.context;
@@ -15,7 +43,7 @@ export function bike() {
         var img = new Image();
         img.src = motorbikePng;
         //ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(img, this.x - 50, this.y - 25);
+        ctx.drawImage(img, this.x - 58, this.y - 25);
 
     }
     this.newPos = function (myGameArea) {

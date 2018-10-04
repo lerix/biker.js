@@ -1,5 +1,4 @@
 export function line() {
-
     let move = 0;
 
     this.update = function (myGameArea) {

@@ -21,6 +21,7 @@ export default function app() {
     var enemies = [];
     var myScore;
 
+
     var myGameArea = {
         canvas: document.createElement("canvas"),
         start: function () {
@@ -38,6 +39,7 @@ export default function app() {
         }
     }
 
+    startGame()
 
     function startGame() {
         motorbike = new bike();
@@ -45,7 +47,6 @@ export default function app() {
         myScore = new text("30px", "Consolas", "black", 0, 24);
         myGameArea.start();
     }
-    startGame()
 
     function updateGameArea() {
 
@@ -60,14 +61,20 @@ export default function app() {
         myGameArea.clear();
         lines.update(myGameArea);
 
-        for (let i = 0; i < enemies.length; i += 1) {
+        for (let i = 0; i < enemies.length; i++) {
             enemies[i].update(myGameArea);
             enemies[i].y++;
+
+            if (enemies[i].y === 850) {
+                enemies.splice(i, 1);
+            }
         }
 
         myGameArea.frameNo += 1;
 
-        if (myGameArea.frameNo == 1 || everyinterval(300)) {
+        const interval = 30000 / myGameArea.frameNo;
+
+        if (myGameArea.frameNo == 1 || everyinterval(interval)) {
             const random = Math.floor(Math.random() * (300 - 10 + 1) + 10);
             let enemiBike = new bike();
             enemiBike.x = random;
@@ -77,10 +84,10 @@ export default function app() {
 
         myScore.text = "SCORE: " + myGameArea.frameNo;
 
-        isKeyDown(keyEnum.W_Key) && motorbike.y-- && motorbike.y--;
-        isKeyDown(keyEnum.S_Key) && motorbike.y++;
-        isKeyDown(keyEnum.A_Key) && motorbike.x--;
-        isKeyDown(keyEnum.D_Key) && motorbike.x++;
+        isKeyDown(keyEnum.W_Key) && motorbike.up();
+        isKeyDown(keyEnum.S_Key) && motorbike.down();
+        isKeyDown(keyEnum.A_Key) && motorbike.left();
+        isKeyDown(keyEnum.D_Key) && motorbike.right();
 
         myScore.update(myGameArea);
         motorbike.update(myGameArea);
