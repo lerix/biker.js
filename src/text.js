@@ -1,26 +1,18 @@
-import motorbikePng from '../motorbike.png';
-
-export function bike() {
+export function text(width, height, color, x, y) {
     this.score = 0;
-    this.width = 77;
-    this.height = 125;
+    this.width = width;
+    this.height = height;
     this.speedX = 0;
-    this.speedY = -1;
-    this.x = 200;
-    this.y = 600;
-
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+    this.gravity = 0;
+    this.gravitySpeed = 0;
     this.update = function (myGameArea) {
         let ctx = myGameArea.context;
-        ctx.fillStyle = "#D8D8D8";
-        var img = new Image();
-        img.src = motorbikePng;
-        //ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(img, this.x - 50, this.y - 25);
-
-    }
-    this.newPos = function (myGameArea) {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        ctx.font = this.width + " " + this.height;
+        ctx.fillStyle = color;
+        ctx.fillText(this.text, this.x, this.y);
     }
     this.crashWith = function (otherobj) {
         var myleft = this.x;

@@ -9,6 +9,11 @@ import {
     bike
 } from './bike.js'
 
+import {
+    text
+} from './text.js'
+
+
 export default function app() {
 
     var motorbike;
@@ -37,28 +42,46 @@ export default function app() {
     function startGame() {
         motorbike = new bike();
         lines = new line();
-        myScore = new model("30px", "Consolas", "black", 0, 24, "text");
+        myScore = new text("30px", "Consolas", "black", 0, 24);
         myGameArea.start();
     }
     startGame()
 
     function updateGameArea() {
-        var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+
         for (let i = 0; i < enemies.length; i += 1) {
             if (motorbike.crashWith(enemies[i])) {
-                //return;
+                let label = new text("50px", "Consolas", "black", 50, 400);
+                label.text = "GAME OVER!";
+                label.update(myGameArea);
+                return;
             }
         }
         myGameArea.clear();
+        lines.update(myGameArea);
+
+        for (let i = 0; i < enemies.length; i += 1) {
+            enemies[i].update(myGameArea);
+            enemies[i].y++;
+        }
+
         myGameArea.frameNo += 1;
+
+        if (myGameArea.frameNo == 1 || everyinterval(300)) {
+            const random = Math.floor(Math.random() * (300 - 10 + 1) + 10);
+            let enemiBike = new bike();
+            enemiBike.x = random;
+            enemiBike.y = -100;
+            enemies.push(enemiBike);
+        }
+
         myScore.text = "SCORE: " + myGameArea.frameNo;
 
-        isKeyDown(keyEnum.W_Key) && motorbike.y--;
+        isKeyDown(keyEnum.W_Key) && motorbike.y-- && motorbike.y--;
         isKeyDown(keyEnum.S_Key) && motorbike.y++;
         isKeyDown(keyEnum.A_Key) && motorbike.x--;
         isKeyDown(keyEnum.D_Key) && motorbike.x++;
 
-        lines.update(myGameArea);
         myScore.update(myGameArea);
         motorbike.update(myGameArea);
     }

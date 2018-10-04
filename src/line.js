@@ -12,7 +12,7 @@ export function line() {
             y = width * i + space * i;
             ctx.fillRect(195, y + move, 10, width);
         }
-        move++;
+        move += 2;
         if (move > width + space) {
             move = 0;
         }
