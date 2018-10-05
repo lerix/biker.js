@@ -1,11 +1,10 @@
 import motorbikePng from '../motorbike.png';
 
 export function bike() {
-    this.score = 0;
     this.width = 60;
     this.height = 150;
-    this.speedX = 0;
-    this.speedY = -1;
+    this.speedX = 2;
+    this.speedY = 3;
     this.x = 200;
     this.y = 600;
 
@@ -13,29 +12,30 @@ export function bike() {
         if (this.y == 0)
             return;
 
-        this.y--;
-        this.y--;
-        this.y--;
+        this.y -= this.speedY;
     }
-    this.down = function () {
-        if (this.y > 670)
+    this.down = function (cheat = false) {
+        if (this.y > 670 && !cheat)
             return;
 
-        this.y++;
+        this.y += this.speedY;
+
     }
 
     this.left = function () {
         if (this.x == 0)
             return;
-        this.x--;
+
+        this.x -= this.speedX;
+
     }
 
     this.right = function () {
         if (this.x > 320)
             return;
-        this.x++;
-    }
 
+        this.x += this.speedX;
+    }
 
     this.update = function (myGameArea) {
         let ctx = myGameArea.context;

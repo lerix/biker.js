@@ -11,7 +11,7 @@ export function line() {
             y = width * i + space * i;
             ctx.fillRect(195, y + move, 10, width);
         }
-        move += 2;
+        move += 4;
         if (move > width + space) {
             move = 0;
         }

@@ -1,8 +1,5 @@
 import _ from 'lodash';
 import {
-    model
-} from './component.js'
-import {
     line
 } from './line.js'
 import {
@@ -44,7 +41,7 @@ export default function app() {
     function startGame() {
         motorbike = new bike();
         lines = new line();
-        myScore = new text("30px", "Consolas", "black", 0, 24);
+        myScore = new text("30px", "Arial", "black", 0, 24);
         myGameArea.start();
     }
 
@@ -52,10 +49,13 @@ export default function app() {
 
         for (let i = 0; i < enemies.length; i += 1) {
             if (motorbike.crashWith(enemies[i])) {
-                let label = new text("50px", "Consolas", "black", 50, 400);
+                let label = new text("50px", "Arial", "black", 50, 400);
                 label.text = "GAME OVER!";
                 label.update(myGameArea);
-                return;
+                let subLabel = new text("30px", "Arial", "black", 150, 450);
+                subLabel.text = "Ctrl + R";
+                subLabel.update(myGameArea);
+                //return;
             }
         }
         myGameArea.clear();
@@ -63,7 +63,7 @@ export default function app() {
 
         for (let i = 0; i < enemies.length; i++) {
             enemies[i].update(myGameArea);
-            enemies[i].y++;
+            enemies[i].down(true);
 
             if (enemies[i].y === 850) {
                 enemies.splice(i, 1);
@@ -72,13 +72,14 @@ export default function app() {
 
         myGameArea.frameNo += 1;
 
-        const interval = 30000 / myGameArea.frameNo;
+        const interval = 25000 / myGameArea.frameNo;
 
         if (myGameArea.frameNo == 1 || everyinterval(interval)) {
             const random = Math.floor(Math.random() * (300 - 10 + 1) + 10);
             let enemiBike = new bike();
             enemiBike.x = random;
-            enemiBike.y = -100;
+            enemiBike.y = -200;
+            enemiBike.speedY = 3;
             enemies.push(enemiBike);
         }
 
