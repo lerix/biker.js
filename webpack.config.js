@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -56,7 +55,7 @@ module.exports = {
 
         new webpack.NamedModulesPlugin(),
         //prints more readable module names in the browser console on HMR updates
-        new HtmlWebPackPlugin({
+        new HtmlWebpackPlugin({
             template: "./src/index.html",
             filename: "./index.html"
         })
