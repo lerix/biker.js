@@ -1,6 +1,7 @@
-import app from './app.js';
+import App from './app.js';
 
-app()
+const app = new App();
+app.start();
 
 if (module.hot) {
     module.hot.accept('./app.js', function () {
