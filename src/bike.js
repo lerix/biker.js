@@ -1,20 +1,20 @@
 import motorbikePng from '../motorbike.png';
 
-export function bike() {
-    this.width = 60;
-    this.height = 150;
-    this.speedX = 2;
-    this.speedY = 3;
-    this.x = 200;
-    this.y = 600;
+export class bike {
+    width = 60;
+    height = 150;
+    speedX = 2;
+    speedY = 3;
+    x = 200;
+    y = 600;
 
-    this.up = function () {
+    up() {
         if (this.y == 0)
             return;
 
         this.y -= this.speedY;
     }
-    this.down = function (cheat = false) {
+    down(cheat = false) {
         if (this.y > 670 && !cheat)
             return;
 
@@ -22,7 +22,7 @@ export function bike() {
 
     }
 
-    this.left = function () {
+    left() {
         if (this.x == 0)
             return;
 
@@ -30,14 +30,14 @@ export function bike() {
 
     }
 
-    this.right = function () {
+    right() {
         if (this.x > 320)
             return;
 
         this.x += this.speedX;
     }
 
-    this.update = function (myGameArea) {
+    update(myGameArea) {
         let ctx = myGameArea.context;
         ctx.fillStyle = "#D8D8D8";
         var img = new Image();
@@ -46,11 +46,11 @@ export function bike() {
         ctx.drawImage(img, this.x - 58, this.y - 25);
 
     }
-    this.newPos = function (myGameArea) {
+    newPos(myGameArea) {
         this.x += this.speedX;
         this.y += this.speedY;
     }
-    this.crashWith = function (otherobj) {
+    crashWith(otherobj) {
         var myleft = this.x;
         var myright = this.x + (this.width);
         var mytop = this.y;
