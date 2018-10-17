@@ -1,7 +1,12 @@
-export function line() {
-    let move = 0;
+export class line {
 
-    this.update = function (myGameArea) {
+    move = 0
+
+    constructor() {
+        this.move = 0;
+    }
+
+    update(myGameArea) {
         let ctx = myGameArea.context;
         ctx.fillStyle = 'grey';
         let y = -50;
