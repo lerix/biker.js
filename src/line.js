@@ -1,5 +1,4 @@
 export class line {
-
     move = 0
 
     constructor() {
