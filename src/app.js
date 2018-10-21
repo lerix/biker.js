@@ -1,11 +1,10 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import {
     line
 } from './line.js'
 import {
     bike
 } from './bike.js'
-
 import {
     text
 } from './text.js'
@@ -17,27 +16,34 @@ export default class App {
     myScore;
     canvas;
     frameNo;
-
+    width;
+    height;
+    
     constructor() {
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+
+
         this.enemies = [];
         this.canvas = document.createElement("canvas");
         this.motorbike = new bike();
-        this.lines = new line();
+        this.lines = new line(this.width/2);
         this.myScore = new text("30px", "Arial", "black", 0, 24);
         this.frameNo = 0;
         this.updateGameArea = this.updateGameArea.bind(this);
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
 
-    }
-
-    start() {
-        this.canvas.width = 400;
-        this.canvas.height = 800;
         this.context = this.canvas.getContext("2d");
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
+
         window.addEventListener('keydown', this.onKeyDown);
         window.addEventListener('keyup', this.onKeyUp);
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+    }
+
+    start() {
         this.interval = setInterval(this.updateGameArea, 10);
     }
 

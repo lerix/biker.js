@@ -1,8 +1,10 @@
 export class line {
-    move = 0
+    move
+    positionX
 
-    constructor() {
+    constructor(positionX) {
         this.move = 0;
+        this.positionX = positionX;
     }
 
     update(myGameArea) {
@@ -13,7 +15,7 @@ export class line {
         var space = 30;
         for (let i = -1; i < 17; i += 1) {
             y = width * i + space * i;
-            ctx.fillRect(195, y + this.move, 10, width);
+            ctx.fillRect(window.innerWidth/2, y + this.move, 10, width);
         }
         this.move += 4;
         if (this.move > width + space) {
